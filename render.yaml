@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: zafferan-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: "true"
+      - key: DATABASE_POOL_SIZE
+        value: "5"
+      - key: SESSION_DAYS
+        value: "30"
+      - key: DEV_OTP
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"
